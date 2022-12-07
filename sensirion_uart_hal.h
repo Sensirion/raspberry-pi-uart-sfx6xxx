@@ -41,9 +41,9 @@ extern "C" {
 
 /**
  * sensirion_uart_hal_init() - initialize UART
- * 
- * @port: platform dependent port descriptor, 
- *        see sensirion_uart_typedef.h for data type
+ *
+ * @port: platform dependent port descriptor, see
+ * sensirion_uart_typedef.h for data type
  *
  * Return:      0 on success, an error code otherwise
  */

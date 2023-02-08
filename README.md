@@ -4,7 +4,7 @@ The repository provides a driver for setting up a SFC6XXX sensor to run on a Ras
 
 <center><img src="images/product-image-dummy.jpeg" width="300px"></center>
 
-Click [here](https://sensirion.com/products/product-categories/) to learn more about the Sensirion SFC6XXX sensor.
+Click [here](https://sensirion.com/products/catalog/?filter_category=b460ae72-20ef-488d-8be1-e66a7d53db33) to learn more about the Sensirion SFC6XXX sensor.
 
 
 ## Connect the sensor

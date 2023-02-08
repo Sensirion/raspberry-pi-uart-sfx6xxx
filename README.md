@@ -4,43 +4,16 @@ The repository provides a driver for setting up a SFC6XXX sensor to run on a Ras
 
 <center><img src="images/product-image-dummy.jpeg" width="300px"></center>
 
-Click [here](https://sensirion.com/products/product-categories/) to learn more about the Sensirion SFC6XXX sensor.
-
-
-
+Click [here](https://sensirion.com/products/catalog/?filter_category=b460ae72-20ef-488d-8be1-e66a7d53db33) to learn more about the Sensirion SFC6XXX sensor.
 
 
 ## Connect the sensor
 
-<details><summary>Connecting the Sensor over USB</summary>
-<p>
-This is the recommended way to connect your sensor. 
-Plug the provided USB cable into your Raspberry Pi and sensor.
-</p></details>
+1. Connect the sensor to a 24V power supply.
+2. Connect the sensor to your Raspberry Pi by using the provided USB cable
 
-
-<details><summary>Connecting the Sensor over UART Pins</summary>
-<p>
-
-Use the following pins to connect your SFC6XXX to your Raspberry Pi:
-
-<img src="images/product-pinout-dummy.jpeg" width="300px">
-
-| *Pin SFC6XXX* | *Cable Color* | *Name* | *Pin Raspberry Pi* | *Description*  | *Comments* |
-|---|---|:---:|---|---|---|
-| 1 | red | VDD | Pin 2 | Supply Voltage | 3.3 or 5V |
-| 2 | black | GND | Pin 6 | Ground |  |
-| 3 | green | RX | Pin 8 | UART: Transmission pin for communication |  |
-| 4 | yellow | TX | Pin 10 | UART: Receiving pin for communication |  |
-| 5 | blue | SEL | Pin 4 | Interface select | Leave floating or pull to VDD to select UART |
-
-<img src="images/raspi-uart-pinout-5V.png" width="400px">
-
-> **Note:** Make sure to [configure your hardware serial interface](https://www.raspberrypi.com/documentation/computers/configuration.html#disabling-the-linux-serial-console) on your Raspberry Pi.
-
-> **Note:** Make sure to connect serial pins as cross-over (RX pin of sensor -> TX on Raspberry Pi; TX pin of sensor -> RX pin of Raspberry Pi)
-
-</p></details>
+Please note that due to the delays introduced by the FTDI driver you can 
+reach a maximum sampling frequency of about 20Hz with this setup.
 
 ## Quick start example
 

@@ -62,6 +62,7 @@ int16_t sfc6xxx_set_setpoint(float setpoint) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 0, &header);
     return local_error;
 }
@@ -78,6 +79,7 @@ int16_t sfc6xxx_get_setpoint(float* setpoint) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *setpoint = sensirion_common_bytes_to_float(&buffer_ptr[0]);
     return local_error;
@@ -95,6 +97,7 @@ int16_t sfc6xxx_read_measured_value(float* measured_value) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *measured_value = sensirion_common_bytes_to_float(&buffer_ptr[0]);
     return local_error;
@@ -114,6 +117,7 @@ int16_t sfc6xxx_read_averaged_measured_value(uint8_t measurements,
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(200 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *averaged_measured_value = sensirion_common_bytes_to_float(&buffer_ptr[0]);
     return local_error;
@@ -133,6 +137,7 @@ int16_t sfc6xxx_set_setpoint_and_read_measured_value(float setpoint,
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *measured_value = sensirion_common_bytes_to_float(&buffer_ptr[0]);
     return local_error;
@@ -152,6 +157,7 @@ int16_t sfc6xxx_set_user_controller_gain(float gain) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 0, &header);
     return local_error;
 }
@@ -169,6 +175,7 @@ int16_t sfc6xxx_get_user_controller_gain(float* gain) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *gain = sensirion_common_bytes_to_float(&buffer_ptr[0]);
     return local_error;
@@ -188,6 +195,7 @@ int16_t sfc6xxx_set_user_init_step(float init_step) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 0, &header);
     return local_error;
 }
@@ -205,6 +213,7 @@ int16_t sfc6xxx_get_user_init_step(float* init_step) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *init_step = sensirion_common_bytes_to_float(&buffer_ptr[0]);
     return local_error;
@@ -223,6 +232,7 @@ int16_t sfc6xxx_measure_raw_flow(uint16_t* flow) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 2, &header);
     *flow = sensirion_common_bytes_to_uint16_t(&buffer_ptr[0]);
     return local_error;
@@ -242,6 +252,7 @@ int16_t sfc6xxx_measure_raw_thermal_conductivity_with_closed_valve(
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(600 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 2, &header);
     *thermal_conductivity = sensirion_common_bytes_to_uint16_t(&buffer_ptr[0]);
     return local_error;
@@ -260,6 +271,7 @@ int16_t sfc6xxx_measure_temperature(float* temperature) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *temperature = sensirion_common_bytes_to_float(&buffer_ptr[0]);
     return local_error;
@@ -278,6 +290,7 @@ int16_t sfc6xxx_get_number_of_calibrations(uint32_t* number_of_calibrations) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *number_of_calibrations =
         sensirion_common_bytes_to_uint32_t(&buffer_ptr[0]);
@@ -298,6 +311,7 @@ int16_t sfc6xxx_get_calibration_validity(uint32_t index, bool* validity) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 1, &header);
     *validity = (bool)buffer_ptr[0];
     return local_error;
@@ -317,6 +331,7 @@ int16_t sfc6xxx_get_calibration_gas_id(uint32_t index, uint32_t* gas_id) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *gas_id = sensirion_common_bytes_to_uint32_t(&buffer_ptr[0]);
     return local_error;
@@ -337,6 +352,7 @@ int16_t sfc6xxx_get_calibration_gas_unit(uint32_t index, int8_t* prefix,
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 3, &header);
     *prefix = (int8_t)buffer_ptr[0];
     *unit = (uint8_t)buffer_ptr[1];
@@ -358,6 +374,7 @@ int16_t sfc6xxx_get_calibration_fullscale(uint32_t index, float* fullscale) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *fullscale = sensirion_common_bytes_to_float(&buffer_ptr[0]);
     return local_error;
@@ -376,6 +393,7 @@ int16_t sfc6xxx_get_current_gas_id(uint32_t* gas_id) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *gas_id = sensirion_common_bytes_to_uint32_t(&buffer_ptr[0]);
     return local_error;
@@ -395,6 +413,7 @@ int16_t sfc6xxx_get_current_gas_unit(int8_t* prefix, uint8_t* unit,
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 3, &header);
     *prefix = (int8_t)buffer_ptr[0];
     *unit = (uint8_t)buffer_ptr[1];
@@ -415,6 +434,7 @@ int16_t sfc6xxx_get_current_fullscale(float* fullscale) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *fullscale = sensirion_common_bytes_to_float(&buffer_ptr[0]);
     return local_error;
@@ -433,6 +453,7 @@ int16_t sfc6xxx_set_calibration(uint32_t calibration_number) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 0, &header);
     return local_error;
 }
@@ -449,6 +470,7 @@ int16_t sfc6xxx_get_calibration(uint32_t* calibration_number) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *calibration_number = sensirion_common_bytes_to_uint32_t(&buffer_ptr[0]);
     return local_error;
@@ -467,6 +489,7 @@ int16_t sfc6xxx_set_calibration_volatile(uint32_t calibration_number) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(20 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 0, &header);
     return local_error;
 }
@@ -484,6 +507,7 @@ int16_t sfc6xxx_set_slave_address(uint8_t slave_address) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 0, &header);
     return local_error;
 }
@@ -500,6 +524,7 @@ int16_t sfc6xxx_get_slave_address(uint8_t* slave_address) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 1, &header);
     *slave_address = (uint8_t)buffer_ptr[0];
     return local_error;
@@ -518,6 +543,7 @@ int16_t sfc6xxx_set_baudrate(uint32_t baudrate) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 0, &header);
     return local_error;
 }
@@ -534,6 +560,7 @@ int16_t sfc6xxx_get_baudrate(uint32_t* baudrate) {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 4, &header);
     *baudrate = sensirion_common_bytes_to_uint32_t(&buffer_ptr[0]);
     return local_error;
@@ -553,6 +580,7 @@ int16_t sfc6xxx_get_product_type(int8_t* product_type,
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 64, &header);
     sensirion_common_copy_bytes(&buffer_ptr[0], (uint8_t*)product_type,
                                 product_type_size);
@@ -573,6 +601,7 @@ int16_t sfc6xxx_get_product_name(int8_t* product_name,
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 64, &header);
     sensirion_common_copy_bytes(&buffer_ptr[0], (uint8_t*)product_name,
                                 product_name_size);
@@ -593,6 +622,7 @@ int16_t sfc6xxx_get_article_code(int8_t* article_code,
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 64, &header);
     sensirion_common_copy_bytes(&buffer_ptr[0], (uint8_t*)article_code,
                                 article_code_size);
@@ -613,6 +643,7 @@ int16_t sfc6xxx_get_serial_number(int8_t* serial_number,
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(50 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 64, &header);
     sensirion_common_copy_bytes(&buffer_ptr[0], (uint8_t*)serial_number,
                                 serial_number_size);
@@ -634,6 +665,7 @@ int16_t sfc6xxx_get_version(uint8_t* firmware_major, uint8_t* firmware_minor,
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(10 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 7, &header);
     *firmware_major = (uint8_t)buffer_ptr[0];
     *firmware_minor = (uint8_t)buffer_ptr[1];
@@ -657,6 +689,7 @@ int16_t sfc6xxx_device_reset() {
     if (local_error) {
         return local_error;
     }
+    sensirion_uart_hal_sleep_usec(100 * 1000);
     local_error = sensirion_shdlc_rx_inplace(&frame, 0, &header);
     sensirion_uart_hal_sleep_usec(300 * 1000);
     return local_error;

@@ -291,9 +291,9 @@ int16_t sfc6xxx_get_calibration_gas_id(uint32_t index, uint32_t* gas_id);
  *
  * @param[in] index The calibration index to read the requested information
  * from.
- * @param[out] prefix Medium unit prefix, see appendix for encoding.
- * @param[out] unit Medium unit, see appendix for encoding.
- * @param[out] timebase Timebase, see appendix for encoding.
+ * @param[out] prefix Medium unit prefix, see datasheet for encoding.
+ * @param[out] unit Medium unit, see datasheet for encoding.
+ * @param[out] timebase Timebase, see datasheet for encoding.
  *
  * @return error_code 0 on success, an error code otherwise.
  */
@@ -330,9 +330,9 @@ int16_t sfc6xxx_get_current_gas_id(uint32_t* gas_id);
  *
  * Get the gas unit of the currently active calibration.
  *
- * @param[out] prefix Medium unit prefix, see appendix for encoding.
- * @param[out] unit Medium unit, see appendix for encoding.
- * @param[out] timebase Timebase, see appendix for encoding.
+ * @param[out] prefix Medium unit prefix, see datasheet for encoding.
+ * @param[out] unit Medium unit, see datasheet for encoding.
+ * @param[out] timebase Timebase, see datasheet for encoding.
  *
  * @return error_code 0 on success, an error code otherwise.
  */

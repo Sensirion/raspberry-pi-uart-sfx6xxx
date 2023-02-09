@@ -69,7 +69,7 @@ int main(void) {
     }
     float averaged_measured_value = 0.0;
     uint16_t repetition = 0;
-    for (repetition = 0; repetition < 10; repetition++) {
+    for (repetition = 0; repetition < 200; repetition++) {
         error =
             sfc6xxx_read_averaged_measured_value(50, &averaged_measured_value);
         if (error != NO_ERROR) {

@@ -36,6 +36,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include "sensirion_common.h"
+#include "sensirion_shdlc.h"  // error definition
 #include "sensirion_uart_hal.h"
 #include "sfc6xxx_uart.h"
 #include <stdio.h>  // printf
@@ -72,7 +73,14 @@ int main(void) {
     for (repetition = 0; repetition < 200; repetition++) {
         error =
             sfc6xxx_read_averaged_measured_value(50, &averaged_measured_value);
-        if (error != NO_ERROR) {
+        if (error == SENSIRION_SHDLC_ERR_EXECUTION_FAILURE) {
+            printf("error executing read_averaged_measured_value(): %i\n",
+                   error);
+            printf("Most likely the valve was closed due to overheating "
+                   "protection.\nMake sure a flow is applied and restart the "
+                   "script.\n");
+            continue;
+        } else if (error != NO_ERROR) {
             printf("error executing read_averaged_measured_value(): %i\n",
                    error);
             continue;

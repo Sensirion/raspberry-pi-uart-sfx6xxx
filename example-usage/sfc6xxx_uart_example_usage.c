@@ -46,7 +46,8 @@
 int main(void) {
     int16_t error = NO_ERROR;
 
-    // for non linux systems modify the header file sensirion_uart_descriptor.h
+    // for non linux systems or when connecting over UART pins
+    // modify the port definition in the header file sensirion_uart_descriptor.h
     // SERIAL_0 defaults to "/dev/ttyUSB0" for linux user space implementation
     sensirion_uart_hal_init(SERIAL_0);
 

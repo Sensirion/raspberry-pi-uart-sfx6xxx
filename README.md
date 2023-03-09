@@ -18,19 +18,81 @@ The following instructions and examples use a *SFC6000*.
 
 ## Connect the sensor
 
-1. Connect the sensor to a 24V power supply.
-2. Connect the sensor to your Raspberry Pi by using the provided USB cable.
+Please note that the sensor needs to be connected to a 24V power supply.
+
+<details><summary>Connecting the Sensor over USB</summary>
+<p>
+Plug in the provided cable to power and connect the USB port to your Raspberry Pi.
 
 Please note that due to the delays introduced by the FTDI driver you can 
 reach a maximum sampling frequency of about 20Hz with this setup.
-
-For special setups check out the sensor pinout in the section below.
-
-<details><summary>RS485 interface pinout</summary>
-<p>
-<img src="images/product-pinout-sfc6xxx.png" width="300px">
 </p>
 </details>
+
+
+<details><summary>Connecting the Sensor over RS485 converter</summary>
+<p>
+
+With this connection setup you can reach a sampling frequency of 100Hz or more.
+
+
+To connect the sensor to your Raspberry Pi serial interface you need a RS485 to RS232 converter. For example, you can use following material:
+
+- [RS485 to RS232 Converter U094 from M5Stack](https://www.distrelec.ch/en/isolated-rs485-transceiver-unit-m5stack-u094/p/30185750)
+- [M8 socket to Bare End Cable](https://www.distrelec.ch/en/actuator-sensor-cable-m8-socket-bare-end-conductors-5m-phoenix-contact-1681842/p/11033799) to connect the sensor to the converter
+- [Grove to pin header cable](https://www.distrelec.ch/en/grove-pin-female-jumper-to-grove-pin-conversion-cable-seeed-studio-110990028/p/30069938) to connect the RS485 converter to your Raspberry Pi board
+
+Wire the sensor to the RS485 converter using the M8 socket to Bare End Cable:
+
+| *Sensor Pin* | *Cable Color* | *Name* | *Converter connection*  | *Comments* |
+|--------------|---------------|:-------------:|------------|------------|
+| 1 | brown | VDD | - | Connect to external power supply (+24V).
+| 2 | white | D+ | A | 
+| 3 | black | D- | B | 
+| 4 | blue | GND | Ground | Connect the Ground of the external power supply to the adapter ground as well
+
+<img src="images/SFC6xxxRS485ConverterPinout.png" width="500px">
+
+
+Wire the RS485 converter to your Raspberry Pi using the Grove to pin header cable:
+
+| *Converter* | *Cable Color* | *Raspberry Pi Pin* | *Comments* |
+|--------------|---------------|:-------------:|------------|
+| TXD | yellow | Pin 10 (RXD) | UART communication, cross over |
+| RXD | white | Pin 8 (TXD) | UART communication, cross over | 
+| 5V | red | Pin 2 (VDD) | Power supply for the RS485 converter |
+| GND | black | Pin 6 (GND) |  |
+
+<img src="images/raspi-pinout-uart-5V-Grove-Cable.png" width="700px">
+
+> **Note:** Make sure to [configure your hardware serial interface](https://www.raspberrypi.com/documentation/computers/configuration.html#disabling-the-linux-serial-console) on your Raspberry Pi.
+
+> **Note:** Make sure to connect serial pins as cross-over (RXD of converter -> TXD on Raspberry Pi; TXD of converter -> RXD pin of Raspberry Pi)
+
+</p>
+</details>
+
+<details>
+<summary>
+Custom setup - sensor pinout
+</summary>
+<p>
+The M8 connector of your SFC6XXX has the following pinout:
+
+<img src="images/product-pinout-sfc6xxx.png" width="300px">
+
+| *Pin* | *Cable Color* | *Name* | *Description*  | *Comments* |
+|-------|---------------|:------:|----------------|------------|
+| 1 | brown | VDD | Supply Voltage | +24V
+| 2 | white | D+ |  | 
+| 3 | black | D- |  | 
+| 4 | blue | GND | Ground | 
+
+</p>
+</details>
+</br>
+
+
 
 ## Quick start example
 
@@ -43,7 +105,7 @@ For special setups check out the sensor pinout in the section below.
 
      `#define SERIAL_0 "/dev/ttyUSB0"`
 
-   - For connection over UART Pins 
+   - For connection over UART Pins using the RS485 Converter
 
      `#define SERIAL_0 "/dev/serial0"`
 

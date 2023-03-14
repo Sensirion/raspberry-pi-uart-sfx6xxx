@@ -39,12 +39,8 @@ extern "C" {
 // type of uart port descriptor (platform dependent)
 typedef const char* UartDescr;
 
-// definition of default port for USB connection
+// definition of default port
 #define SERIAL_0 "/dev/ttyUSB0"
-
-// definition of serial port when connecting over UART pins
-// make sure to enable serial port in raspi-config
-// #define SERIAL_0 "/dev/serial0"
 
 #ifdef __cplusplus
 }

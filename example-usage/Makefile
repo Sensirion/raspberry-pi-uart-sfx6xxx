@@ -1,7 +1,7 @@
 src_dir = ..
 common_sources = ${src_dir}/sensirion_config.h ${src_dir}/sensirion_common.h ${src_dir}/sensirion_common.c
 uart_sources = ${src_dir}/sensirion_uart_hal.h ${src_dir}/sensirion_shdlc.h ${src_dir}/sensirion_shdlc.c
-driver_sources = ${src_dir}/sfc6xxx_uart.h ${src_dir}/sfc6xxx_uart.c
+driver_sources = ${src_dir}/sfx6xxx_uart.h ${src_dir}/sfx6xxx_uart.c
 
 uart_implementation ?= ${src_dir}/sensirion_uart_hal.c
 
@@ -13,11 +13,11 @@ endif
 
 .PHONY: all clean
 
-all: sfc6xxx_uart_example_usage
+all: sfx6xxx_uart_example_usage
 
-sfc6xxx_uart_example_usage: clean
+sfx6xxx_uart_example_usage: clean
 	$(CC) $(CFLAGS) -o $@  ${driver_sources} ${uart_sources} \
-		${uart_implementation} ${common_sources} sfc6xxx_uart_example_usage.c
+		${uart_implementation} ${common_sources} sfx6xxx_uart_example_usage.c
 
 clean:
-	$(RM) sfc6xxx_uart_example_usage
+	$(RM) sfx6xxx_uart_example_usage

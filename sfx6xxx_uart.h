@@ -45,13 +45,6 @@ extern "C" {
 
 #include "sensirion_config.h"
 #define SFX6XXX_SHDLC_ADDR 0x00
-#define SFX6XXX_SHDLC_ADDR 0x00
-#define SFX6XXX_SHDLC_ADDR 0x00
-#define SFX6XXX_SHDLC_ADDR 0x00
-#define SFX6XXX_SHDLC_ADDR 0x00
-#define SFX6XXX_SHDLC_ADDR 0x00
-#define SFX6XXX_SHDLC_ADDR 0x00
-#define SFX6XXX_SHDLC_ADDR 0x00
 
 typedef enum {
     SET_SETPOINT_CMD_ID = 0x0,
@@ -330,9 +323,9 @@ int16_t sfx6xxx_get_calibration_gas_id(uint32_t index, uint32_t* gas_id);
  *
  * @param[in] index The calibration index to read the requested information
  * from.
- * @param[out] prefix Medium unit prefix, see appendix for encoding.
- * @param[out] unit Medium unit, see appendix for encoding.
- * @param[out] timebase Timebase, see appendix for encoding.
+ * @param[out] prefix Medium unit prefix, see datasheet for encoding.
+ * @param[out] unit Medium unit, see datasheet for encoding.
+ * @param[out] timebase Timebase, see datasheet for encoding.
  *
  * @return error_code 0 on success, an error code otherwise.
  */

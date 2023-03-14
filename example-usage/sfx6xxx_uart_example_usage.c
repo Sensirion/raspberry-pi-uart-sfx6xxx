@@ -36,6 +36,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include "sensirion_common.h"
+#include "sensirion_shdlc.h"  // error definition
 #include "sensirion_uart_hal.h"
 #include "sfx6xxx_uart.h"
 #include <stdio.h>  // printf
@@ -45,7 +46,8 @@
 int main(void) {
     int16_t error = NO_ERROR;
 
-    // for non linux systems modify the header file sensirion_uart_descriptor.h
+    // for non linux systems or when connecting over UART pins
+    // modify the port definition in the header file sensirion_uart_descriptor.h
     // SERIAL_0 defaults to "/dev/ttyUSB0" for linux user space implementation
     sensirion_uart_hal_init(SERIAL_0);
 
@@ -72,7 +74,14 @@ int main(void) {
     for (repetition = 0; repetition < 200; repetition++) {
         error =
             sfx6xxx_read_averaged_measured_value(50, &averaged_measured_value);
-        if (error != NO_ERROR) {
+        if (error == SENSIRION_SHDLC_ERR_EXECUTION_FAILURE) {
+            printf("error executing read_averaged_measured_value(): %i\n",
+                   error);
+            printf("Most likely the valve was closed due to overheating "
+                   "protection.\nMake sure a flow is applied and restart the "
+                   "script.\n");
+            continue;
+        } else if (error != NO_ERROR) {
             printf("error executing read_averaged_measured_value(): %i\n",
                    error);
             continue;

@@ -243,6 +243,8 @@ void sensirion_shdlc_finish_frame(struct sensirion_shdlc_buffer* tx_frame);
  * @param tx_frame    Pointer to buffer in which the write frame was prepared.
  *
  * @return            NO_ERROR on success, an error code otherwise.
+ * @deprecated        This function should not be used with new drivers. Use the
+ *                    function sensirion_shdlc_write_request instead!
  */
 int16_t sensirion_shdlc_tx_frame(struct sensirion_shdlc_buffer* tx_frame);
 
@@ -263,6 +265,8 @@ int16_t sensirion_shdlc_tx_frame(struct sensirion_shdlc_buffer* tx_frame);
  *                             is stored.
  *
  * @return            NO_ERROR on success, an error code otherwise
+ * @deprecated        This function should not be used with new drivers. Use the
+ *                    function sensirion_shdlc_read_response instead!
  */
 int16_t sensirion_shdlc_rx_inplace(struct sensirion_shdlc_buffer* rx_frame,
                                    uint8_t expected_data_length,
